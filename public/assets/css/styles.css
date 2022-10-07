@@ -1,0 +1,13 @@
+label.error {
+    color: red;
+    font-size: 1rem;
+    display: block;
+    margin-top: 5px;
+}
+
+input[type=button] {
+    background-color: yellow;
+    color: black;
+    text-align: center;
+    font-size: 13px;
+}
