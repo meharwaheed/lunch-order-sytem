@@ -70,4 +70,19 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    protected function redirectTo()
+    {
+        if (auth()->user()->role== 'director')
+        {
+            return '/dashboard';
+        }
+        elseif(auth()->user()->role == 'manager' || auth()->user()->role == 'shop staff')
+        {
+            return '/menu_management';
+        }
+        else{
+            return '/';
+        }
+    }
 }

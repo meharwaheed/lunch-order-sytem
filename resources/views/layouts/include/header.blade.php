@@ -1,3 +1,7 @@
+<?php
+$shops = \App\Models\Shop::all();
+?>
+
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php">UTAS Canteen</a>
@@ -9,23 +13,51 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
                         </li>
+                        @if(auth()->check())
+                            <?php
+                                $route = url('/home');
+
+                            if(auth()->user()->role == 'director') {
+                                $route = url('/home');
+                            } elseif(auth()->user()->role == 'manager') {
+                                    $route = url('/menu_management');
+                                }
+                            elseif(auth()->user()->role == 'user') {
+                                $route = url('/account');
+                            }
+                                ?>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{url('/register')}}">Register</a>
+                            <a class="nav-link active" href="{{ $route }}">Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{url('/login')}}">Login</a>
+                            <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('logout') }}">Logout</a>
                         </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{url('/register')}}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{url('/login')}}">Login</a>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Restaurant's Menu</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="shop1.php">Lazenbys</a></li>
-                                <li><a class="dropdown-item" href="shop2.php">The Ref</a></li>
-                                <li><a class="dropdown-item" href="shop3.php">Loose Goose</a></li>
+                                @foreach($shops as $shop)
+                                    <li><a class="dropdown-item" href="{{ url('menu') }}/{{ $shop->id }}">{{ $shop->name }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="foods.php">Master Foods</a>
-                        </li>
+                        @if(auth()->check())
+                            <li class="nav-item">
+
+                            @if(auth()->user()->role == 'manager')
+                                    <a class="nav-link active" href="{{ url('/menu_management') }}">Master Foods</a>
+                                @elseif(auth()->user()->role == 'director')
+                                    <a class="nav-link active" href="{{ route('products.index') }}">Master Foods</a>
+                                @endif
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

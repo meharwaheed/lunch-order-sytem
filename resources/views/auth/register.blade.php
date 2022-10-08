@@ -80,42 +80,53 @@
     </div>
     <div class="row py-3">
         <div class="col-4">
-            <img src="images/register.png" class="img-fluid" alt="">
+            <img src="{{ asset('images/register.png') }}" class="img-fluid" alt="">
         </div>
         <div class="col-5">
             <div class="card">
                 <div class="card-body" style="background-color: #e6eeff;">
                     <h5 class="card-title text-center">Register</h5>
-                    <form id="register-form">
-                        <div class="mb-3">
-                            <label for="uname" class="form-label">UTAS Id</label>
-                            <input type="text" class="form-control" name="uname" id="uname"
-                            placeholder="US12345" />
-                        </div>
+                    <form id="register-form" method="POST" action="{{ route('register') }}">
+                        @csrf
                          <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" id="name"
+                            <input type="text" class="form-control" name="name"
                             placeholder="Your Name" />
+                             @error('name')
+                             <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="mailid" class="form-label">Email</label>
+                            <input type="text" class="form-control" name="email" id="mailid"
+                                   placeholder="mail@domain.com"/>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password1" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password1" id="password1"
+                            <input type="password" class="form-control" name="password" id="password1"
                             placeholder="******" />
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password2" class="form-label">Again Password</label>
-                            <input type="password" class="form-control" name="password2" id="password2"
+                            <input type="password" class="form-control" name="password_confirmation" id="password2"
                             placeholder="******"/>
-                        </div>
-                        <div class="mb-3">
-                            <label for="mobileno" class="form-label">Mobile No</label>
-                            <input type="text" class="form-control" name="mobileno" id="mobileno"
-                            placeholder="1231231233"/>
-                        </div>
-                        <div class="mb-3">
-                            <label for="mailid" class="form-label">Email Id</label>
-                            <input type="text" class="form-control" name="mailid" id="mailid"
-                            placeholder="mail@domain.com"/>
+                            @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                        <div class="d-grid gap-2">
                           <button type="submit" class="btn btn-primary btn-block">Register</button>

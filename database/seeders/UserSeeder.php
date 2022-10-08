@@ -20,20 +20,20 @@ class UserSeeder extends Seeder
         User::insert([
           [
               'name' => 'Director',
-              'email' => 'director@gmail.com',
-              'password' => Hash::make('12345678'),
+              'email' => 'director@utas.com',
+              'password' => Hash::make('123456789'),
               'role'   => 'director'
           ],
           [
               'name' => 'Manager',
-              'email' => 'manager@gmail.com',
-              'password' => Hash::make('12345678'),
+              'email' => 'manager@utas.com',
+              'password' => Hash::make('123456789'),
               'role'   => 'manager'
           ],
           [
               'name' => 'Shop Staff',
-              'email' => 'staff@gmail.com',
-              'password' => Hash::make('12345678'),
+              'email' => 'staff@utas.com',
+              'password' => Hash::make('123456789'),
               'role'   => 'shop staff'
           ],
         ]);

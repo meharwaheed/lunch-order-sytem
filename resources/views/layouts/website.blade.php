@@ -16,6 +16,11 @@
                 padding: 0px; */
             }
          </style>
+        <style>
+            .invalid-feedback {
+                display: block!important;
+            }
+        </style>
     </head>
     <body>
         <div class="container-fluid main_div">
