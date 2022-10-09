@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         $data['shops'] = Shop::all();
+
+
+//        $data = file_Storage::disk('local')->get('/storage/images/products/2.jpg');
+//        dd($data);
         return view('website.index')->with($data);
     }
 

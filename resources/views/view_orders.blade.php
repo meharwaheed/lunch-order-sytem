@@ -31,7 +31,7 @@
                         <tbody>
                         @foreach($orders as $order)
                             <tr>
-                                <td><img  width="100" src="{{asset('storage/'.$order->product->image)}}"></td>
+                                <td><img  width="100" src="{{$order->product->image}}"></td>
                                 <td>{{$order->ref_id}}</td>
                                 <td>{{$order->quantity}}</td>
                                 <td>${{$order->price}}</td>

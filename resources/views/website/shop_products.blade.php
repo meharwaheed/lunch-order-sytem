@@ -42,7 +42,7 @@
                                     Buy Now
                                 </a>
                             </td>
-                            <td> <img src="{{asset('storage/'.$product->image)}}"  class="img-thumbnail" alt=""></td>
+                            <td> <img src="{{$product->image}}"  class="img-thumbnail" alt=""></td>
                         </tr>
                         @endforeach
                         </tbody>
